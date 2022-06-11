@@ -30,7 +30,7 @@ function sketch(event){
 
   ctx.lineWidth = 3;
   ctx.lineCap = 'round';
-  ctx.strokeStyle = 'green';
+  ctx.strokeStyle = change_text.style.color;
 
   ctx.moveTo(coord.x, coord.y);
   getPosition(event);
@@ -62,10 +62,22 @@ setTimeout(() => work.classList.add("active"), 800);
 const change_text = document.getElementById("text_switch");
 const initial_text = document.getElementById("text_switch").innerText;
 
-bio.addEventListener("mouseover", () => change_text.innerText = "About Me");
-skills.addEventListener("mouseover", () => change_text.innerText = "Skills");
-resume.addEventListener("mouseover", () => change_text.innerText = "Resume");
-work.addEventListener("mouseover", () => change_text.innerText = "Portfolio");
+bio.addEventListener("mouseover", () => {
+    change_text.innerText = "About Me";
+    change_text.style.color = "#FFB612";
+});
+skills.addEventListener("mouseover", () => {
+  change_text.innerText = "Skills";
+  change_text.style.color = "#C60C30";
+});
+work.addEventListener("mouseover", () => {
+  change_text.innerText = "Portfolio";
+  change_text.style.color = "#228B22";
+});
+resume.addEventListener("mouseover", () => {
+  change_text.innerText = "Resume";
+  change_text.style.color = "rgb(0, 114, 206)";
+});
 
 const cursor = document.querySelector('.cursor');
 const cursorinner = document.querySelector('.cursor2');
