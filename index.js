@@ -35,7 +35,7 @@ function sketch(event){
 
   ctx.lineWidth = 3;
   ctx.lineCap = 'round';
-  ctx.strokeStyle = change_text.style.color;
+  ctx.strokeStyle = change_text.style.color === "black" ? "#FFB612" : change_text.style.color;
 
   ctx.moveTo(coord.x, coord.y);
   getPosition(event);
