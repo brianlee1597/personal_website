@@ -65,7 +65,7 @@ setTimeout(() => resume.classList.add("active"), 475);
 setTimeout(() => work.classList.add("active"), 800);
 
 bio.addEventListener("mouseover", () => {
-    change_text.innerText = "About Me";
+    change_text.innerText = "Bio";
     change_text.style.color = "#FFB612";
 });
 skills.addEventListener("mouseover", () => {
