@@ -15,26 +15,25 @@
     <p class="alert">You can draw on the page!</p>
 
     <div class="border">
+        <svg class="outersvg" height="600" width="600">
+            <circle class="circle" cx="300" cy="300" r="285" stroke="black" stroke-width="3" opacity="0.8" fill="#f5f5f5"/>
+        </svg>
+    
+        <svg class="linksvg" height="700" width="700">
+            <circle class="bio" cx="630" cy="350" r="40" stroke="black" stroke-width="3" fill="#f5f5f5"/>
+            <circle class="work" cx="350" cy="70" r="40" stroke="black" stroke-width="3" fill="#f5f5f5"/>
+            <circle class="skills" cx="350" cy="630" r="40" stroke="black" stroke-width="3" fill="#f5f5f5"/>
+            <circle class="resume" cx="70" cy="350" r="40" stroke="black" stroke-width="3" fill="#f5f5f5"/>
+        </svg>
+        
+        <div class="main_textbox">
+            <h1>Brian's</h1>
+            <h1 class="text_switch">Canvas</h1>
+        </div>
+
         <canvas id="canvas"></canvas>
     </div>
 
-    <svg class="outersvg" height="600" width="600">
-        <circle 
-        class="circle" cx="300" cy="300" r="285" stroke="black" stroke-width="2" opacity="0.7" fill-opacity="0" />
-    </svg>
-
-    <svg class="linksvg" height="700" width="700">
-        <circle class="bio" cx="630" cy="350" r="40" stroke="black" stroke-width="3" fill-opacity="1" fill="#f5f5f5"/>
-        <circle class="work" cx="350" cy="70" r="40" stroke="black" stroke-width="3" fill="#f5f5f5"/>
-        <circle class="skills" cx="350" cy="630" r="40" stroke="black" stroke-width="3" fill="#f5f5f5"/>
-        <circle class="resume" cx="70" cy="350" r="40" stroke="black" stroke-width="3" fill="#f5f5f5"/>
-    </svg>
-    
-    <div class="main_textbox">
-        <h1>Brian's</h1>
-        <h1 class="text_switch">Website</h1>
-    </div>
-    
     <div class="cursor"></div>
     <div class="cursor2"></div>
 </body>
