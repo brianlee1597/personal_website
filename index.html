@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P" rel="stylesheet">
+    <script src="./scripts/index.js" defer></script>
     <title>Brian's Personal Website</title>
 </head>
 <body>
@@ -62,6 +63,14 @@
           opacity: .5;
         }
 
+        .alert {
+            position: fixed;
+            width: 100vw;
+            text-align: center;
+            bottom: 50px;
+            user-select: none;
+        }
+
         .border {
             position: absolute;
             top: 0;
@@ -73,6 +82,7 @@
             width: calc(100% - 50px);
             height: calc(100% - 50px);
             border: 2px solid black;
+            border-radius: 10px;
             opacity: 0.7;
         }
 
@@ -82,6 +92,7 @@
         	top: 50%;
         	left: 50%;
         	transform: translate(-50%,-50%) rotate(-90deg);
+            
         }
 
         .circle {
@@ -125,16 +136,23 @@
             line-height: normal;
         }
 
+        .main_textbox .text_switch {
+            color: #FFB612;
+        }
+
         @keyframes stroke {
           to {
             stroke-dashoffset: 0;
           }
         }
-        
     </style>
 
     <main>
-        <div class="border"></div>
+        <p class="alert">You can draw on the page!</p>
+
+        <div class="border">
+            <canvas id="canvas"></canvas>
+        </div>
 
         <svg class="outersvg" height="600" width="600">
             <circle 
@@ -150,53 +168,11 @@
         
         <div class="main_textbox">
             <h1>Brian's</h1>
-            <h1>Website</h1>
+            <h1 class="text_switch">Website</h1>
         </div>
 
         <div class="cursor"></div>
         <div class="cursor2"></div>
     </main>
-
-    <script>
-        document.querySelector(".bio").classList.add("active");
-
-        setTimeout(() => {
-            document.querySelector(".skills").classList.add("active");
-        }, 175);
-
-        setTimeout(() => {
-            document.querySelector(".resume").classList.add("active");
-        }, 475);
-
-        setTimeout(() => {
-            document.querySelector(".work").classList.add("active");
-        }, 800);
-
-        const cursor = document.querySelector('.cursor');
-        const cursorinner = document.querySelector('.cursor2');
-
-        document.addEventListener('mousemove', function(e){
-          const x = e.clientX;
-          const y = e.clientY;
-          cursor.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`
-        });
-
-        document.addEventListener('mousemove', function(e){
-          const x = e.clientX;
-          const y = e.clientY;
-          cursorinner.style.left = x + 'px';
-          cursorinner.style.top = y + 'px';
-        });
-
-        document.addEventListener('mousedown', function(){
-          cursor.classList.add('click');
-          cursorinner.classList.add('cursorinnerhover')
-        });
-
-        document.addEventListener('mouseup', function(){
-          cursor.classList.remove('click')
-          cursorinner.classList.remove('cursorinnerhover')
-        });
-    </script>
 </body>
 </html>
