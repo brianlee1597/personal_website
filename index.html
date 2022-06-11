@@ -9,11 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P" rel="stylesheet">
     <title>Brian's Personal Website</title>
 </head>
-<body onload="loadLinks()">
+<body>
     <style>
         body {
             margin: 0;
             padding: 0;
+            overflow: hidden;
         }
 
         main {
@@ -34,9 +35,11 @@
             width: calc(100% - 50px);
             height: calc(100% - 50px);
             border: 2px solid #fff;
+            opacity: 0.7;
         }
 
-        .outersvg {
+        .outersvg,
+        .linksvg {
         	position: absolute;
         	top: 50%;
         	left: 50%;
@@ -49,33 +52,27 @@
           animation: stroke 3s ease-out forwards;
         }
 
-        .biosvg,
-        .worksvg,
-        .resumesvg,
         .main_textbox {
             position: absolute;
             transform: translate(-50%,-50%);
         }
 
-        .biosvg {
-            top: 23%;
-            left: 50%;
+        .bio {
+            cursor: pointer;
         }
 
-        .worksvg {
-            top: 65%;
-            left: 38.3%;
-        }
-
-        .resumesvg {
-            top: 65%;
-            left: 61.7%;
-        }
-
-        .bio, .work, .resume {
-            display: none;
+        .work, .resume, .skills {
+            transition: opacity 0.1s ease-in;
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
             background-color: #f5f5f5;
             cursor: pointer;
+        }
+
+        .work.active, .resume.active, .skills.active {
+            opacity: 1;
+            height: auto;
         }
 
         .main_textbox {
@@ -90,53 +87,43 @@
             stroke-dashoffset: 0;
           }
         }
-
-        @keyframes fadeIn {
-        	to {
-        		opacity: 1;
-        	}
-        }
     </style>
 
     <main>
         <div class="border"></div>
 
         <svg class="outersvg" height="600" width="600">
-            <circle class="circle" cx="300" cy="300" r="285" stroke="#fff" stroke-width="2" fill-opacity="0" />
+            <circle 
+            class="circle" cx="300" cy="300" r="285" stroke="#fff" stroke-width="2" opacity="0.7" fill-opacity="0" />
         </svg>
 
-        <svg class="biosvg" height="100" width="100">
-            <circle class="bio" cx="50" cy="50" r="40" stroke="#fff" stroke-width="3" fill-opacity="1" fill="#2f3238"/>
-        </svg>
-
-        <svg class="worksvg" height="100" width="100">
-            <circle class="work" cx="50" cy="50" r="40" stroke="#fff" stroke-width="3" fill="#2f3238"/>
-        </svg>
-
-        <svg class="resumesvg" height="100" width="100">
-            <circle class="resume" cx="50" cy="50" r="40" stroke="#fff" stroke-width="3" fill="#2f3238"/>
+        <svg class="linksvg" height="700" width="700">
+            <circle class="bio" cx="630" cy="350" r="40" stroke="#fff" stroke-width="3" fill-opacity="1" fill="#2f3238"/>
+            <circle class="work" cx="350" cy="70" r="40" stroke="#fff" stroke-width="3" fill="#2f3238"/>
+            <circle class="skills" cx="350" cy="630" r="40" stroke="#fff" stroke-width="3" fill="#2f3238"/>
+            <circle class="resume" cx="70" cy="350" r="40" stroke="#fff" stroke-width="3" fill="#2f3238"/>
         </svg>
 
         <div class="main_textbox">
             <h1>Brian's</h1>
-            <h1>Biography</h1>
+            <h1>Website</h1>
         </div>
     </main>
 
     <script>
-        function loadLinks () {
-            setTimeout(() => {
-                document.querySelector(".bio").style.display = "block";
-            }, 0);
+        document.querySelector(".bio").classList.add("active");
 
-            setTimeout(() => {
-                document.querySelector(".resume").style.display = "block";
-            }, 360);
+        setTimeout(() => {
+            document.querySelector(".skills").classList.add("active");
+        }, 175);
 
-            setTimeout(() => {
-                document.querySelector(".work").style.display = "block";
-            }, 720);
-        }
+        setTimeout(() => {
+            document.querySelector(".resume").classList.add("active");
+        }, 475);
+
+        setTimeout(() => {
+            document.querySelector(".work").classList.add("active");
+        }, 800);
     </script>
 </body>
 </html>
