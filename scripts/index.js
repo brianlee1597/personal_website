@@ -30,7 +30,7 @@ function sketch(event){
 
   ctx.lineWidth = 3;
   ctx.lineCap = 'round';
-  ctx.strokeStyle = 'black';
+  ctx.strokeStyle = 'green';
 
   ctx.moveTo(coord.x, coord.y);
   getPosition(event);
@@ -39,26 +39,33 @@ function sketch(event){
 }
 
 window.addEventListener('load', ()=>{
-    resize(); // Resizes the canvas once the window loads
+    resize();
     document.addEventListener('mousedown', startPainting);
     document.addEventListener('mouseup', stopPainting);
     document.addEventListener('mousemove', sketch);
     window.addEventListener('resize', resize);
 });
 
-document.querySelector(".bio").classList.add("active");
+const links = [".bio", ".skills", ".resume", ".work"];
+const [
+    bio,
+    skills,
+    resume,
+    work
+] = links.map(link => document.querySelector(link));
 
-setTimeout(() => {
-    document.querySelector(".skills").classList.add("active");
-}, 175);
+bio.classList.add("active");
+setTimeout(() => skills.classList.add("active"), 175);
+setTimeout(() => resume.classList.add("active"), 475);
+setTimeout(() => work.classList.add("active"), 800);
 
-setTimeout(() => {
-    document.querySelector(".resume").classList.add("active");
-}, 475);
+const change_text = document.getElementById("text_switch");
+const initial_text = document.getElementById("text_switch").innerText;
 
-setTimeout(() => {
-    document.querySelector(".work").classList.add("active");
-}, 800);
+bio.addEventListener("mouseover", () => change_text.innerText = "About Me");
+skills.addEventListener("mouseover", () => change_text.innerText = "Skills");
+resume.addEventListener("mouseover", () => change_text.innerText = "Resume");
+work.addEventListener("mouseover", () => change_text.innerText = "Portfolio");
 
 const cursor = document.querySelector('.cursor');
 const cursorinner = document.querySelector('.cursor2');
