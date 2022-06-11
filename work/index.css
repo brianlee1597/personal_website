@@ -22,6 +22,12 @@ body {
     right: 0;
     left: 0;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    padding: 50px;
 
     width: calc(100% - 50px);
     height: calc(100% - 50px);
@@ -59,4 +65,31 @@ body {
     width: 50px;
     height: 50px;
     opacity: .5;
+}
+
+#card_title {
+    width: 100%;
+    max-width: 1200px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.expand_cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    aspect-ratio: 300 / 100;
+}
+
+.expand_cards * {
+    width: calc(100% / 10);
+    height: 100%;
+    border: 2px solid black;
+    border-radius: 10px;
+    transition: 0.25s ease-in-out;
+}
+
+.expand_cards #card_1 {
+    width: calc(100% / 2);
 }
