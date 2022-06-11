@@ -1,6 +1,11 @@
 const canvas = document.querySelector('#canvas');
 const ctx = canvas.getContext('2d');
 
+const change_text = document.getElementById("text_switch");
+const initial_text = document.getElementById("text_switch").innerText;
+
+change_text.style.color = "#FFB612";
+
 function resize(){
   ctx.canvas.width = window.innerWidth - 52;
   ctx.canvas.height = window.innerHeight - 52;
@@ -58,9 +63,6 @@ bio.classList.add("active");
 setTimeout(() => skills.classList.add("active"), 175);
 setTimeout(() => resume.classList.add("active"), 475);
 setTimeout(() => work.classList.add("active"), 800);
-
-const change_text = document.getElementById("text_switch");
-const initial_text = document.getElementById("text_switch").innerText;
 
 bio.addEventListener("mouseover", () => {
     change_text.innerText = "About Me";
