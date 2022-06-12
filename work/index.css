@@ -91,5 +91,10 @@ body {
 }
 
 .expand_cards #card_1 {
+    background-color: #E1E1E1;
     width: calc(100% / 2);
+}
+
+.expand_cards #card_2 {
+    background-color: #03d791;
 }
