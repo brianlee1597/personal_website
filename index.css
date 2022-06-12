@@ -93,7 +93,8 @@ body {
 }
 
 .work, .resume, .skills {
-    transition: opacity 0.1s ease-in;
+    display: none;
+    transition: opacity 0.15s ease-in;
     opacity: 0;
     height: 0;
     overflow: hidden;
@@ -101,6 +102,7 @@ body {
 }
 
 .work.active, .resume.active, .skills.active {
+    display: block;
     opacity: 1;
     height: auto;
 }
