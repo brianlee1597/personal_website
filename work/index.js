@@ -29,7 +29,7 @@ class Symbol {
 
     const xFit = this.x * this.fontSize;
     const yFit = this.y * this.fontSize;
-    ctx.fillText(this.text, xFit, yFit);
+    // ctx.fillText(this.text, xFit, yFit);
 
     if (yFit > this.canvasHeight && Math.random() > 0.999)
       this.y = 0;
@@ -79,7 +79,7 @@ function animate (timeStamp) {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "black";
     ctx.font = `${effect.fontSize}px monospace`;
-    effect.symbols.forEach(symbol => symbol.draw(ctx));
+    effect.symbols.forEach(symbol => symbol.draw());
     timer = 0;
   } else {
     timer += deltaTime;
@@ -107,6 +107,7 @@ cards.forEach((card, j) => card.addEventListener("click", () => {
           text[i].style.visibility = "hidden";
         }
       
+        card.closed = true;
         return;
       }
 
