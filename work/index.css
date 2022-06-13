@@ -11,11 +11,12 @@ body {
     overflow: hidden;
     height: 100vh;
     position: relative;
-    background-color: #f5f5f5;
+    background-color: white;
     color: black;
 }
 
 .border {
+    z-index: 1;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -36,10 +37,26 @@ body {
     opacity: 0.7;
 }
 
-#card_title {
+.border #container {
     width: 100%;
     max-width: 1200px;
+    height: auto;
+}
+
+#matrix_effect {
+    position: absolute;
+    border-radius: 9px;
+    z-index: -1;
+}
+
+#card_title {
+    align-self: flex-start;
+    width: fit-content;
     font-family: 'Press Start 2P', cursive;
+    background-color: black;
+    color: white;
+    padding: 15px 30px;
+    margin-bottom: 30px;
 }
 
 .expand_cards {
@@ -47,23 +64,81 @@ body {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    max-width: 1200px;
     aspect-ratio: 300 / 100;
 }
 
-.expand_cards * {
+#card_1, #card_2, #card_3, #card_4, #card_5 {
     width: calc(100% / 10);
     height: 100%;
     border: 2px solid black;
     border-radius: 10px;
     transition: 0.25s ease-in-out;
+    display: grid;
+    place-items: center;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-color: white;
 }
 
-.expand_cards #card_1 {
-    background-color: #E1E1E1;
-    width: calc(100% / 2);
+#card_1 {
+    width: calc(100% / 1.8);
 }
 
-.expand_cards #card_2 {
-    background-color: #03d791;
+#card_2 *, #card_3 *, #card_4 *, #card_5 * {
+    visibility: hidden;
+}
+
+#type, #date, #desc, #sm {
+    font-family: "Montserrat", sans-serif;
+}
+
+#type {
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: white;
+    background-color: black;
+    padding: 7.5px 15px;
+    border-radius: 5px;
+}
+
+#date {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 7.5px 15px;
+    opacity: 0.7;
+}
+
+#image {
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+#desc {
+    position: absolute;
+    left: 25px;
+    bottom: 25px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+}
+
+#sm {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 7.5px 15px;
+    font-weight: 500;
+    padding: 3px 0;
+    border-bottom: 1px solid black;
 }

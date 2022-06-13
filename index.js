@@ -73,7 +73,7 @@ skills.addEventListener("mouseover", () => {
   change_text.style.color = "#C60C30";
 });
 work.addEventListener("mouseover", () => {
-  change_text.innerText = "Portfolio";
+  change_text.innerText = "Work";
   change_text.style.color = "#228B22";
 });
 resume.addEventListener("mouseover", () => {
