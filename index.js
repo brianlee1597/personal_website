@@ -1,9 +1,6 @@
 const canvas = document.querySelector('#canvas');
 const ctx = canvas.getContext('2d');
-
 const change_text = document.getElementById("text_switch");
-const initial_text = document.getElementById("text_switch").innerText;
-
 change_text.style.color = "#FFB612";
 
 function resize(){
@@ -14,7 +11,7 @@ function resize(){
 let coord = { x: 0 , y: 0 }; 
 let paint = false;
 
-const getPosition = event => {
+function getPosition (event) {
     const offset = 25;
     coord.x = event.clientX - offset;
     coord.y = event.clientY - offset;

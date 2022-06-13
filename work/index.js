@@ -95,16 +95,16 @@ const big = "calc(100% / 1.8)", small = "calc(100% / 10)";
 
 cards.forEach((card, j) => card.addEventListener("click", () => {
     cards.forEach((card, i) => {
+      const [image] = card.getElementsByTagName("div");
+      const [link] = card.getElementsByTagName("a");
+      const text = card.getElementsByTagName("h2");
+      const elems = [image, link, ...text];
+
       if (i !== j) {
         card.style.width = small;
-        const [canvas] = card.getElementsByTagName("div");
-        const [link] = card.getElementsByTagName("a");
-        const text = card.getElementsByTagName("h2");
-        canvas.style.visibility = "hidden";
-        link.style.visibility = "hidden";
         
-        for (let i = 0; i < text.length; i++) {
-          text[i].style.visibility = "hidden";
+        for (let i = 0; i < elems.length; i++) {
+          elems[i].style.visibility = "hidden";
         }
       
         return;
@@ -112,15 +112,9 @@ cards.forEach((card, j) => card.addEventListener("click", () => {
 
       card.style.width = big;
       
-      setTimeout(() => {
-        const [canvas] = card.getElementsByTagName("div");
-        const [link] = card.getElementsByTagName("a");
-        const text = card.getElementsByTagName("h2");
-        canvas.style.visibility = "visible";
-        link.style.visibility = "visible";
-        
-        for (let i = 0; i < text.length; i++) {
-          text[i].style.visibility = "visible";
+      setTimeout(() => {        
+        for (let i = 0; i < elems.length; i++) {
+          elems[i].style.visibility = "visible";
         }
       }, 250);
 
