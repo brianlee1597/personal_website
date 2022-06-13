@@ -29,7 +29,7 @@ class Symbol {
 
     const xFit = this.x * this.fontSize;
     const yFit = this.y * this.fontSize;
-    // ctx.fillText(this.text, xFit, yFit);
+    ctx.fillText(this.text, xFit, yFit);
 
     if (yFit > this.canvasHeight && Math.random() > 0.999)
       this.y = 0;
