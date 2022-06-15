@@ -1,4 +1,4 @@
-const canvas = document.getElementById("matrix_effect");
+const canvas = select("#matrix_effect");
 const ctx = canvas.getContext("2d");
 
 function resize () {
@@ -8,7 +8,7 @@ function resize () {
 
 resize();
 
-window.addEventListener("resize", () => {
+win_listen("resize", () => {
   resize();
   effect.resize(canvas.width, canvas.height);
 });
@@ -90,7 +90,7 @@ function animate (timeStamp) {
 
 animate(0);
 
-const cards = new Array(5).fill(0).map((_, i) => document.getElementById(`card_${i + 1}`)); 
+const cards = new Array(5).fill(0).map((_, i) => select(`#card_${i + 1}`)); 
 const big = "calc(100% / 1.8)", small = "calc(100% / 10)";
 const delay = 250, click_disabled = false;
 
@@ -98,31 +98,28 @@ cards.forEach((card, j) => card.addEventListener("click", () => {
   if (click_disabled) return;
 
     cards.forEach((card, i) => {
-      const [image] = card.getElementsByTagName("div");
-      const [link] = card.getElementsByTagName("a");
-      const text = card.getElementsByTagName("h2");
-      const elems = [image, link, ...text];
+      const elems = [
+        ...card.getElementsByTagName("div"), 
+        ...card.getElementsByTagName("a"), 
+        ...card.getElementsByTagName("h2"),
+      ];
 
-      if (i !== j) {
-        card.style.width = small;
-        
-        for (let i = 0; i < elems.length; i++) {
+      if (i !== j) {        
+        for (let i = 0; i < elems.length; i++)
           elems[i].style.visibility = "hidden";
-        }
       
+        card.style.width = small;
         card.closed = true;
         return;
       }
-
-      card.style.width = big;
       
       setTimeout(() => {        
-        for (let i = 0; i < elems.length; i++) {
+        for (let i = 0; i < elems.length; i++)
           elems[i].style.visibility = "visible";
-        }
       }, delay - 50);
 
-      document.getElementById("card_title").innerText = card.dataset.title;
+      card.style.width = big;
+      select("#card_title").innerText = card.dataset.title;
     });
 
     click_disabled = true;
