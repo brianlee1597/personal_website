@@ -26,48 +26,6 @@ class Symbol {
   }
 }
 
-new class Cards {
-  constructor () {
-    this.cards = new Array(5).fill(0).map((_, i) => select(`#card_${i + 1}`)); 
-    this.big = "calc(100% / 1.8)";
-    this.small = "calc(100% / 10)";
-    this.delay = 250;
-    this.click_disabled = false;
-
-    this.cards.forEach((card, j) => card.addEventListener("click", () => {
-      if (this.click_disabled) return;
-    
-        this.cards.forEach((card, i) => {
-          const elems = [
-            ...card.getElementsByTagName("div"), 
-            ...card.getElementsByTagName("a"), 
-            ...card.getElementsByTagName("h2"),
-          ];
-    
-          if (i !== j) {        
-            for (let i = 0; i < elems.length; i++)
-              elems[i].style.visibility = "hidden";
-          
-            card.style.width = this.small;
-            card.closed = true;
-            return;
-          }
-          
-          setTimeout(() => {        
-            for (let i = 0; i < elems.length; i++)
-              elems[i].style.visibility = "visible";
-          }, this.delay - 50);
-    
-          card.style.width = this.big;
-          select("#card_title").innerText = card.dataset.title;
-        });
-    
-        this.click_disabled = true;
-        setTimeout(() => this.click_disabled = false, this.delay);
-    }));
-  }
-}();
-
 new class Effect {
   constructor (canvasWidth, canvasHeight) {
     this.canvasWidth = canvasWidth;
@@ -121,3 +79,45 @@ new class Effect {
     this.#initialize();
   }
 }(canvas.width, canvas.height);
+
+new class Cards {
+  constructor () {
+    this.cards = new Array(5).fill(0).map((_, i) => select(`#card_${i + 1}`)); 
+    this.big = "calc(100% / 1.8)";
+    this.small = "calc(100% / 10)";
+    this.delay = 250;
+    this.click_disabled = false;
+
+    this.cards.forEach((card, j) => card.addEventListener("click", () => {
+      if (this.click_disabled) return;
+    
+        this.cards.forEach((card, i) => {
+          const elems = [
+            ...card.getElementsByTagName("div"), 
+            ...card.getElementsByTagName("a"), 
+            ...card.getElementsByTagName("h2"),
+          ];
+    
+          if (i !== j) {        
+            for (let i = 0; i < elems.length; i++)
+              elems[i].style.visibility = "hidden";
+          
+            card.style.width = this.small;
+            card.closed = true;
+            return;
+          }
+          
+          setTimeout(() => {        
+            for (let i = 0; i < elems.length; i++)
+              elems[i].style.visibility = "visible";
+          }, this.delay - 50);
+    
+          card.style.width = this.big;
+          select("#card_title").innerText = card.dataset.title;
+        });
+    
+        this.click_disabled = true;
+        setTimeout(() => this.click_disabled = false, this.delay);
+    }));
+  }
+}();
