@@ -3,6 +3,29 @@ const ctx = canvas.getContext("2d");
 ctx.canvas.width = window.innerWidth - 56;
 ctx.canvas.height = window.innerHeight - 56;
 
+class Symbol {
+  constructor (x, y, fontSize, canvasHeight) {
+    this.characters = '코드는_아름답다. 상(상)력을 자극하고!많은^멋있는~것을:만들수있지않[나]';
+    this.x = x;
+    this.y = y;
+    this.fontSize = fontSize;
+    this.text = '';
+    this.canvasHeight = canvasHeight;
+  }
+
+  draw () {
+    const randIndex = Math.floor(Math.random() * this.characters.length);
+    this.text = this.characters.charAt(randIndex);
+
+    const xFit = this.x * this.fontSize;
+    const yFit = this.y * this.fontSize;
+    ctx.fillText(this.text, xFit, yFit);
+
+    const canBegin = yFit > this.canvasHeight && Math.random() > 0.999;
+    this.y = canBegin ? 0 : this.y + 1;
+  }
+}
+
 new class Cards {
   constructor () {
     this.cards = new Array(5).fill(0).map((_, i) => select(`#card_${i + 1}`)); 
@@ -55,30 +78,7 @@ new class Effect {
     this.lastTime = 0;
     this.timer = 0;
     this.fps = 30;
-    this.nextFrame = 1000 / this.fps;
-
-    this.Symbol = class Symbol {
-      constructor (x, y, fontSize, canvasHeight) {
-        this.characters = '코드는_아름답다. 상(상)력을 자극하고!많은^멋있는~것을:만들수있지않[나]';
-        this.x = x;
-        this.y = y;
-        this.fontSize = fontSize;
-        this.text = '';
-        this.canvasHeight = canvasHeight;
-      }
-    
-      draw () {
-        const randIndex = Math.floor(Math.random() * this.characters.length);
-        this.text = this.characters.charAt(randIndex);
-    
-        const xFit = this.x * this.fontSize;
-        const yFit = this.y * this.fontSize;
-        ctx.fillText(this.text, xFit, yFit);
-    
-        const canBegin = yFit > this.canvasHeight && Math.random() > 0.999;
-        this.y = canBegin ? 0 : this.y + 1;
-      }
-    }    
+    this.nextFrame = 1000 / this.fps;    
 
     this.#initialize();
     win_listen("resize", () => this.resize(canvas.width, canvas.height));
@@ -86,7 +86,7 @@ new class Effect {
 
   #initialize () {
     for (let i = 0; i < this.columns; i++) {
-      this.symbols[i] = new this.Symbol(i, 0, this.fontSize, this.canvasHeight);
+      this.symbols[i] = new Symbol(i, 0, this.fontSize, this.canvasHeight);
     }
 
     this.animate(0);
