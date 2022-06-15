@@ -92,8 +92,11 @@ animate(0);
 
 const cards = new Array(5).fill(0).map((_, i) => document.getElementById(`card_${i + 1}`)); 
 const big = "calc(100% / 1.8)", small = "calc(100% / 10)";
+const delay = 250, click_disabled = false;
 
 cards.forEach((card, j) => card.addEventListener("click", () => {
+  if (click_disabled) return;
+
     cards.forEach((card, i) => {
       const [image] = card.getElementsByTagName("div");
       const [link] = card.getElementsByTagName("a");
@@ -117,8 +120,11 @@ cards.forEach((card, j) => card.addEventListener("click", () => {
         for (let i = 0; i < elems.length; i++) {
           elems[i].style.visibility = "visible";
         }
-      }, 250);
+      }, delay);
 
       document.getElementById("card_title").innerText = card.dataset.title;
     });
+
+    click_disabled = true;
+    setTimeout(() => click_disabled = false, delay);
 }));
