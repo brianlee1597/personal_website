@@ -120,7 +120,7 @@ cards.forEach((card, j) => card.addEventListener("click", () => {
         for (let i = 0; i < elems.length; i++) {
           elems[i].style.visibility = "visible";
         }
-      }, delay);
+      }, delay - 50);
 
       document.getElementById("card_title").innerText = card.dataset.title;
     });
