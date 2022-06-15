@@ -1,6 +1,4 @@
-const ctx = select('#canvas').getContext('2d');
 const change_text = select("#text_switch");
-change_text.style.color = "#FFB612";
 
 new class CircleAnimation {
   constructor () {
@@ -32,6 +30,9 @@ new class PaintBox {
     this.coord = { x: this.x, y: this.y };
     this.paint = false;
     this.offset = 25;
+    this.ctx = select('#canvas').getContext('2d');
+
+    change_text.style.color = "#FFB612";
 
     win_listen('load', ()=>{
       this.resize();
@@ -48,8 +49,8 @@ new class PaintBox {
   }
 
   resize(){
-    ctx.canvas.width = window.innerWidth - 56;
-    ctx.canvas.height = window.innerHeight - 56;
+    this.ctx.canvas.width = window.innerWidth - 56;
+    this.ctx.canvas.height = window.innerHeight - 56;
   }  
 
   startPainting (event) {
@@ -63,13 +64,13 @@ new class PaintBox {
 
   sketch (event) {
     if (!this.paint) return;
-    ctx.beginPath();
-    ctx.lineWidth = 3;
-    ctx.lineCap = 'round';
-    ctx.strokeStyle = change_text.style.color;
-    ctx.moveTo(this.coord.x, this.coord.y);
+    this.ctx.beginPath();
+    this.ctx.lineWidth = 3;
+    this.ctx.lineCap = 'round';
+    this.ctx.strokeStyle = change_text.style.color;
+    this.ctx.moveTo(this.coord.x, this.coord.y);
     this.#getPosition(event);
-    ctx.lineTo(this.coord.x , this.coord.y);
-    ctx.stroke();
+    this.ctx.lineTo(this.coord.x , this.coord.y);
+    this.ctx.stroke();
   }
 }();
