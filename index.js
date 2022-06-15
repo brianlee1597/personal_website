@@ -2,7 +2,7 @@ const ctx = select('#canvas').getContext('2d');
 const change_text = select("#text_switch");
 change_text.style.color = "#FFB612";
 
-(() => new class Animation {
+new class CircleAnimation {
   constructor () {
     this.links = [
       this.#makeObj(select(".bio"), "Bio", "#FFB612", 0),
@@ -23,9 +23,9 @@ change_text.style.color = "#FFB612";
   #makeObj (dom, innerText, color, delay) {
     return { dom, innerText, color, delay };
   }; 
-})();
+}();
 
-(() => new class PaintBox {
+new class PaintBox {
   constructor () {
     this.x = 0;
     this.y = 0;
@@ -72,4 +72,4 @@ change_text.style.color = "#FFB612";
     ctx.lineTo(this.coord.x , this.coord.y);
     ctx.stroke();
   }
-})();
+}();

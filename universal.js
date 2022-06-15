@@ -2,7 +2,7 @@ const select = (tag) => document.querySelector(tag);
 const win_listen = (act, cb) => window.addEventListener(act, cb);
 const doc_listen = (act, cb) => document.addEventListener(act, cb);
 
-(() => new class Cursor {
+new class Cursor {
   constructor () {
     this.cursor = select('.cursor');
     this.cursor_inner = select('.cursor2');
@@ -25,4 +25,4 @@ const doc_listen = (act, cb) => document.addEventListener(act, cb);
       this.cursor_inner.classList.remove('cursorinnerhover');
     });
   }
-})();
+}();
