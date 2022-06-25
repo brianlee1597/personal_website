@@ -8,7 +8,7 @@ new class CircleAnimation {
       this.#makeObj(select(".resume"), "Resume", "rgb(0, 114, 206)", 500),
       this.#makeObj(select(".work"), "Work", "#228B22", 800),
     ];
-
+    
     this.links.forEach(link => {
       setTimeout(() => link.dom.classList.add("active"), link.delay);
       link.dom.addEventListener("mouseover", () => {

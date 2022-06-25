@@ -86,6 +86,7 @@ new class Cards {
     this.big = "calc(100% / 1.8)";
     this.small = "calc(100% / 10)";
     this.delay = 250;
+    this.buffer = 50;
     this.click_disabled = false;
 
     this.cards.forEach((card, j) => card.addEventListener("click", () => {
@@ -110,7 +111,7 @@ new class Cards {
           setTimeout(() => {        
             for (let i = 0; i < elems.length; i++)
               elems[i].style.visibility = "visible";
-          }, this.delay - 50);
+          }, this.delay - this.buffer);
     
           card.style.width = this.big;
           select("#card_title").innerText = card.dataset.title;
