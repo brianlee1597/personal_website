@@ -4,8 +4,8 @@ new class CircleAnimation {
   constructor () {
     this.links = [
       this.#makeObj(select(".bio"), "Bio", "#FFB612", 0),
-      this.#makeObj(select(".contact"), "Contact", "#C60C30", 200),
-      this.#makeObj(select(".resume"), "Resume", "rgb(0, 114, 206)", 500),
+      this.#makeObj(select(".resume"), "Resume", "rgb(0, 114, 206)", 200),
+      this.#makeObj(select(".contact"), "Contact", "#C60C30", 500),
       this.#makeObj(select(".work"), "Work", "#228B22", 800),
     ];
     
