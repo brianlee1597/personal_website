@@ -6,48 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link href="../universal.css" rel="stylesheet">
+    <link href="./index.css" rel="stylesheet">
     <script src="../universal.js" defer></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js" defer></script>
+    <script src="./index.js" defer></script>
     <title>Brian's Contact</title>
 </head>
 <body>
-    <div id="contact">
-        <input type="email" id="email_input" />
-        <div id="editor"></div>
-        <button type="submit" id="submit" onclick="submit()">Submit</button>
+    <div class="border">
+        <a id="home" href="../index.html">Go Back</a>
+
+        <div id="container">
+            <h3 id="intro">Thank you for visiting my contact page. Please feel free to send me an email using the form below or directly at <span>
+                brianlee1597@gmail.com</span>. Looking forward to connecting with you!</h3>
+            <div id="email_title">
+                <input type="email" id="email_input" placeholder="Your Email" required/>
+                <input type="text" id="title_input" placeholder="Title (optional)"/>
+            </div>
+            <div id="editor"></div>
+            <button type="submit" id="submit" onclick="submit()">Send</button>
+        </div>
     </div>
 
     <div class="cursor"></div>
     <div class="cursor2"></div>
-
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-    <script>
-        const quill = new Quill('#editor', {
-          theme: 'snow'
-        });
-
-        async function post (url = '', data = {}) {
-            const res = await fetch(url, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(data),
-            });
-            return res.json();
-        }
-
-        async function submit () {
-            try {
-                const from = document.getElementById("email_input").value;
-                const text = quill.root.innerHTML;
-                const url = "https://contactemailsend.herokuapp.com/send_email";
-                
-                const res = await post(url, { from, text });
-                console.log(res);
-            } catch (err) {
-                console.log(err);
-            }
-        }
-    </script>
 </body>
 </html>

@@ -9,21 +9,6 @@
     opacity: 0.7;
 }
 
-.border {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    margin: auto;
-
-    width: calc(100% - 50px);
-    height: calc(100% - 50px);
-    border: 3px solid black;
-    border-radius: 10px;
-    opacity: 0.7;
-}
-
 .outersvg,
 .linksvg {
     position: absolute;
