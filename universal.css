@@ -1,5 +1,6 @@
 @font-face {
   font-family: PressStart;
+  font-display: swap;
   src: url("./resources/fonts/PressStart2P-Regular.ttf");
 }
 
