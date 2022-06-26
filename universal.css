@@ -1,3 +1,8 @@
+@font-face {
+  font-family: PressStart;
+  src: url("./resources/fonts/PressStart2P-Regular.ttf");
+}
+
 * {
   cursor: none;
   margin: 0;
