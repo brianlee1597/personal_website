@@ -11,6 +11,10 @@
     font-family: PressStart, cursive;
 }
 
+#intro span a {
+    color: black;
+}
+
 #email_title {
     display: flex;
     flex-direction: row;
@@ -47,6 +51,7 @@
     border-radius: 5px;
     position: absolute;
     width: fit-content;
+    right: 0;
 }
 
 #success_title {
