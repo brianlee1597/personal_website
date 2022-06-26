@@ -28,6 +28,7 @@
     border-bottom: 1px solid black;
     font-size: 22px;
     padding-left: 10px;
+    outline: none;
 }
 
 #editor {
@@ -46,4 +47,6 @@
     padding: 10px 30px;
     border: 1px solid black;
     border-radius: 5px;
+    position: absolute;
+    width: fit-content;
 }
