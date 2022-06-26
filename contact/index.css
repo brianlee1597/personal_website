@@ -1,13 +1,14 @@
 #intro {
     left: 0;
     right: 0;
-    margin: -100px auto 50px auto;
+    margin: -150px auto 50px auto;
     text-align: center;
     width: 80%;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 500;
     letter-spacing: -0.2px;
-    line-height: 24px;
+    line-height: 28px;
+    font-family: PressStart, cursive;
 }
 
 #email_title {
@@ -30,7 +31,7 @@
 }
 
 #editor {
-    min-height: 125px;
+    max-height: 300px;
     margin-bottom: 25px;
 }
 
