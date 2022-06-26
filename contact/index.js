@@ -27,7 +27,7 @@ function populateComplete () {
 
     const temp = document.getElementsByTagName("template")[0];
     const clone = temp.content.cloneNode(true);
-    container.innerHTML = clone;
+    container.replaceChild(clone);
 }
 
 async function submit () {
