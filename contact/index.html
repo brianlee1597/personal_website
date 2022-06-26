@@ -20,25 +20,34 @@
           theme: 'snow'
         });
 
-        const xhr = new XMLHttpRequest();
-
-        function submit () {
-            const from = document.getElementById("email_input").value;
-            const text = quill.root.innerHTML;
-            xhr.open("POST", "https://contactemailsend.herokuapp.com/send_email");
-            xhr.setRequestHeader("Accept", "application/json");
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-            xhr.setRequestHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-            xhr.setRequestHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
-
-            xhr.send(JSON.stringify({
-                from,
-                text,
-            }));
+        async function post (url = '', data = {}) {
+            const res = await fetch(url, {
+              method: 'POST',
+              mode: 'cors',
+              cache: 'no-cache',
+              credentials: 'same-origin', 
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              redirect: 'follow',
+              referrerPolicy: 'no-referrer',
+              body: JSON.stringify(data)
+            });
+            return res.json();
         }
-        
-        xhr.onload = () => console.log(xhr.responseText);
+
+        async function submit () {
+            try {
+                const from = document.getElementById("email_input").value;
+                const text = quill.root.innerHTML;
+                const url = "https://contactemailsend.herokuapp.com/send_email";
+                
+                const res = await post(url, { from, text });
+                console.log(res);
+            } catch (e) {
+                console.log(e);
+            }
+        }
     </script>
 </body>
 </html>
