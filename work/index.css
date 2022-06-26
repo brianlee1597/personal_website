@@ -44,10 +44,6 @@
     visibility: hidden;
 }
 
-#type, #date, #desc, #sm {
-    font-family: "Montserrat", sans-serif;
-}
-
 #type {
     position: absolute;
     left: 25px;

@@ -23,7 +23,11 @@ function validateEmail (email) {
 
 function populateComplete () {
     const container = document.getElementById("container");
-    container.innerHTML = "Success";
+    document.getElementById("home").style.display = "none";
+
+    const temp = document.getElementsByTagName("template")[0];
+    const clone = temp.content.cloneNode(true);
+    container.innerHTML = clone;
 }
 
 async function submit () {
