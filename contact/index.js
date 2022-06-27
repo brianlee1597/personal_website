@@ -1,3 +1,9 @@
+const container = select("#container");
+const home = select("#home");
+const from = select("#email_input");
+const title = select("#title_input");
+const warning = select("#warning");
+
 const quill = new Quill('#editor', {
     theme: 'snow'
 });
@@ -22,47 +28,66 @@ function validateEmail (email) {
 };
 
 function populateComplete () {
-    const container = document.getElementById("container");
-    document.getElementById("home").style.display = "none";
+    home.style.display = "none";
 
     const temp = document.getElementsByTagName("template")[0];
     const clone = temp.content.cloneNode(true);
     container.replaceChildren(clone);
 }
 
-async function submit () {
-    const from = document.getElementById("email_input").value;
-    const title = document.getElementById("title_input").value;
-    const text = quill.root.innerHTML;
-    
-    if (from === "") {
-        alert("Please input your email address");
-        return;
-    } 
-
-    if (!validateEmail(from)) {
-        alert("Please input a correct email address");
-        return;
-    }
-    
-    if (text === "<p><br></p>") {
-        alert("Please populate the text field");
-        return;
-    }
-
-    let url = "https://contactemailsend.herokuapp.com/send_email", res;
-
-    try {
-        res = await post(url, { from, title, text });
-    } catch (e) {
-        alert(`There has been an error in processing your email request (${e}), please try again`);
-        return;
-    }
-
-    if(res.includes("Unauthorized")) {
-        alert(`You are unauthorized to send an email from this URL`);
-        return;
-    }
-
-    populateComplete();
+function setWarning (text) {
+    (warning.style.visibility = "visible") && (warning.innerText = text);
 }
+
+function clearWarning () {
+    (warning.style.visibility = "hidden") && (warning.innerText = "");
+}
+
+async function submit () {
+    if (warning.innerText.includes("unauthorized")) return;
+
+    const text = quill.root.innerHTML;
+
+    if (from.value === "") {
+        setWarning("Please include your email address");
+    } else if (!validateEmail(from.value)) {
+        setWarning("Please include a correct email address");
+    } else if (text === "<p><br></p>") {
+        setWarning("Please let me know what the email is for in the text field")
+    } else {
+        clearWarning();
+        let url = "https://contactemailsend.herokuapp.com/send_email", res;
+
+        try {
+            res = await post(url, { from, title, text });
+
+            if(res.includes("Unauthorized")) 
+                setWarning("You are unauthorized to send an email from this URL");
+            else populateComplete();
+        } catch (e) {
+            alert(`There has been an error in processing your email request, please try again`);
+        }
+    }
+}
+
+quill.root.addEventListener("keydown", () => {
+    const text = quill.root.innerHTML;
+    const text_no_space = text.replaceAll(" ", "");
+    const box_populated = text_no_space !== "<p></p>" && text_no_space !== "<p><br></p>";
+    const has_warning = warning.style.visibility === "visible";
+    const authorized = !warning.innerText.includes("unauthorized");
+
+    box_populated && has_warning && authorized && clearWarning();
+})
+
+from.addEventListener("keydown", () => {
+    const has_warning = warning.style.visibility === "visible";
+    const authorized =  !warning.innerText.includes("unauthorized");
+    if (from.value !== "" && has_warning) {
+        if (warning.innerText === "Please include your email address") {
+            warning.innerText = "Please include a correct email address";
+        } else if (validateEmail(from.value) && authorized) {
+            clearWarning();
+        }
+    }
+})
