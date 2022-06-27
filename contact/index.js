@@ -71,13 +71,12 @@ async function submit () {
 }
 
 quill.root.addEventListener("keydown", () => {
-    const text = quill.root.innerHTML;
-    const text_no_space = text.replaceAll(" ", "");
+    const text_no_space = quill.root.innerHTML.replaceAll(" ", "");
     const box_populated = text_no_space !== "<p></p>" && text_no_space !== "<p><br></p>";
     const has_warning = warning.style.visibility === "visible";
     const authorized = !warning.innerText.includes("unauthorized");
 
-    box_populated && has_warning && authorized && clearWarning();
+    if (box_populated && has_warning && authorized) clearWarning();
 })
 
 from.addEventListener("keydown", () => {
